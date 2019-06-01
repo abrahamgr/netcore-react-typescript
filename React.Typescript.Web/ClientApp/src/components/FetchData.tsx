@@ -1,9 +1,20 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 
-export class FetchData extends Component {
-  displayName = FetchData.name
+interface IFetchDataState {
+    forecasts: IForecast[];
+    loading: boolean;
+}
 
-  constructor(props) {
+interface IForecast {
+    dateFormatted: string;
+    temperatureC: string;
+    temperatureF: string;
+    summary: string;
+}
+
+export class FetchData extends React.Component<{}, IFetchDataState> {
+
+    constructor(props: {}) {
     super(props);
     this.state = { forecasts: [], loading: true };
 
@@ -14,7 +25,7 @@ export class FetchData extends Component {
       });
   }
 
-  static renderForecastsTable(forecasts) {
+    public static renderForecastsTable(forecasts: IForecast[]) {
     return (
       <table className='table'>
         <thead>
@@ -39,7 +50,7 @@ export class FetchData extends Component {
     );
   }
 
-  render() {
+    public render(): React.ReactElement<{}> {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
       : FetchData.renderForecastsTable(this.state.forecasts);

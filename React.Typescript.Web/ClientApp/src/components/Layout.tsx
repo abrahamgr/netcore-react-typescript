@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { Col, Grid, Row } from 'react-bootstrap';
 import { NavMenu } from './NavMenu';
 
-export class Layout extends Component {
-  displayName = Layout.name
+export class Layout extends React.Component<{}, {}> {
 
   render() {
     return (
